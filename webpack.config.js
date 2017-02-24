@@ -15,7 +15,8 @@ module.exports = {
     context: path.join(__dirname),
     entry: entries,
     output: {
-        path: outputPath,
+        path: path.resolve(__dirname,outputPath),
+        // publicPath:'dist/',
         filename: '[name]/index.js'
     },
     resolve: {

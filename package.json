@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "一个可以作为开发模板使用的webpack配置",
   "scripts": {
-    "dev": "npm run clean && webpack",
+    "dev": "npm run clean && webpack && concurrently -k -r \"npm run gulp\" \"npm run server\"",
+    "server": "webpack-dev-server",
+    "gulp": "gulp watch",
     "clean": "rimraf ./dist"
   },
   "repository": {
@@ -21,6 +23,7 @@
     "assets-webpack-plugin": "^3.5.1",
     "css-loader": "^0.26.1",
     "glob": "^7.1.1",
+    "concurrently": "^3.1.0",
     "gulp": "^3.9.1",
     "gulp-data": "^1.2.1",
     "gulp-plumber": "^1.1.0",
@@ -33,6 +36,7 @@
     "tslint": "^4.0.2",
     "typescript": "^2.1.4",
     "url-loader": "^0.5.7",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
   }
 }
