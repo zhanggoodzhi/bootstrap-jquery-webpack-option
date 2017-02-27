@@ -5,6 +5,8 @@ const AssetsPlugin = require('assets-webpack-plugin');
 const entryPath = 'src/pages';
 const outputPath = 'dist';
 const files = glob.sync(path.join(entryPath, '**/index.ts'));
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 
 const entries = {};
 for (let v of files) {
@@ -15,8 +17,8 @@ module.exports = {
     context: path.join(__dirname),
     entry: entries,
     output: {
-        path: path.resolve(__dirname,outputPath),
-        // publicPath:'dist/',
+        path: path.resolve(__dirname, outputPath),
+        publicPath: 'http://localhost:8080/dist/',
         filename: '[name]/index.js'
     },
     resolve: {
@@ -35,12 +37,19 @@ module.exports = {
                         limit: 8192
                     }
                 }],
-            }, {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
-            }, {
+            },
+            {
                 test: /\.less$/,
-                use: ['style-loader', 'css-loader', 'less-loader']
+                use: ['style-loader',
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: () => [autoprefixer,cssnano]
+                        }
+                    },
+                    'less-loader'
+                ]
             }
         ]
     },

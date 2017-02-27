@@ -25,5 +25,5 @@ gulp.task('template', () => {
 });
 
 gulp.task("watch", ['template'], () => {
-	gulp.watch('src/pages/**/*.pug', ["template"]);
+	gulp.watch('src/**/*.pug', ["template"]);
 });
