@@ -22,6 +22,9 @@ module.exports = {
         filename: '[name]/index.js'
     },
     resolve: {
+        modules: [
+            path.resolve(__dirname, 'src/components'), path.resolve(__dirname, 'node_modules')
+        ],
         extensions: ['.js', '.ts']
     },
     module: {
@@ -45,7 +48,7 @@ module.exports = {
                     {
                         loader: 'postcss-loader',
                         options: {
-                            plugins: () => [autoprefixer,cssnano]
+                            plugins: () => [autoprefixer, cssnano]
                         }
                     },
                     'less-loader'
