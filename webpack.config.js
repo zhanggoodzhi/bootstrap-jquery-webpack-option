@@ -3,11 +3,10 @@ const path = require('path');
 const glob = require('glob');
 const AssetsPlugin = require('assets-webpack-plugin');
 const entryPath = 'src/pages';
-const outputPath = 'dist';
+const outputPath = 'public/dist';
 const files = glob.sync(path.join(entryPath, '**/index.ts'));
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
-
 const entries = {};
 for (let v of files) {
     let dir = path.dirname(v.replace(entryPath + '/', ''));
@@ -18,7 +17,7 @@ module.exports = {
     entry: entries,
     output: {
         path: path.resolve(__dirname, outputPath),
-        publicPath: 'http://localhost:8080/dist/',
+        publicPath: 'http://localhost:8080/public/dist/',
         filename: '[name]/index.js'
     },
     resolve: {

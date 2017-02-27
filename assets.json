@@ -1,1 +1,1 @@
-{"person":{"js":"http://localhost:8080/dist/person/index.js"},"product":{"js":"http://localhost:8080/dist/product/index.js"},"common":{"js":"http://localhost:8080/dist/common/index.js"}}
+{"person":{"js":"http://localhost:8080/public/dist/person/index.js"},"product":{"js":"http://localhost:8080/public/dist/product/index.js"},"common":{"js":"http://localhost:8080/public/dist/common/index.js"}}

@@ -4,6 +4,7 @@
   "description": "一个可以作为开发模板使用的webpack配置",
   "scripts": {
     "dev": "npm run clean && webpack && concurrently -k -r \"npm run gulp\" \"npm run server\"",
+    "pro": "npm run clean && webpack --config webpack.config.pro.js && gulp template",
     "server": "webpack-dev-server",
     "gulp": "gulp watch",
     "clean": "rimraf ./dist"

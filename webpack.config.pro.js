@@ -3,9 +3,10 @@ const path = require('path');
 const glob = require('glob');
 const AssetsPlugin = require('assets-webpack-plugin');
 const entryPath = 'src/pages';
-const outputPath = 'dist';
+const outputPath = 'public/dist';
 const files = glob.sync(path.join(entryPath, '**/index.ts'));
-
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 const entries = {};
 for (let v of files) {
     let dir = path.dirname(v.replace(entryPath + '/', ''));
@@ -15,11 +16,14 @@ module.exports = {
     context: path.join(__dirname),
     entry: entries,
     output: {
-        path: path.resolve(__dirname,outputPath),
-        // publicPath:'dist/',
-        filename: '[name]/index.js'
+        path: path.resolve(__dirname, outputPath),
+        publicPath: '/public/dist',
+        filename: '[id][hash].js'
     },
     resolve: {
+        modules: [
+            path.resolve(__dirname, 'src/components'), path.resolve(__dirname, 'node_modules')
+        ],
         extensions: ['.js', '.ts']
     },
     module: {
@@ -35,12 +39,19 @@ module.exports = {
                         limit: 8192
                     }
                 }],
-            }, {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
-            }, {
+            },
+            {
                 test: /\.less$/,
-                use: ['style-loader', 'css-loader', 'less-loader']
+                use: ['style-loader',
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: () => [autoprefixer, cssnano]
+                        }
+                    },
+                    'less-loader'
+                ]
             }
         ]
     },
@@ -50,7 +61,9 @@ module.exports = {
         }),
         new AssetsPlugin({
             filename: 'assets.json'
-        })
-    ],
-    devtool: 'source-map'
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: false
+        }),
+    ]
 };

@@ -21,7 +21,7 @@ gulp.task('template', () => {
 			return pugData
 		}))
 		.pipe(pug())
-		.pipe(gulp.dest('template'));
+		.pipe(gulp.dest('public/template'));
 });
 
 gulp.task("watch", ['template'], () => {
