@@ -8,6 +8,9 @@ head
     script(src=js)
     body
       h1= href
+      button.btn.btn-default(type="button") bootstrap按钮
+      button#myButton.btn.btn-primary(type="button", data-loading-text="Loading...", autocomplete="off") 弹出按钮
+      button.btn.btn-default(type="button", data-toggle="tooltip", data-placement="bottom", title="Tooltip on bottom") Tooltip on bottom
       h1 全局标题
       block main
       img(src="/public/images/letter.png")

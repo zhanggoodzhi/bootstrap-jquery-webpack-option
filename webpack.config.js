@@ -32,13 +32,19 @@ module.exports = {
                 use: ['ts-loader']
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpg|gif|woff2|eot|woff|ttf|svg)$/,
                 use: [{
                     loader: 'url-loader',
                     options: { // 这里的 limit=8192 表示用 base64 编码 <= ８K 的图像
                         limit: 8192
                     }
                 }],
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader',
+                    'css-loader'
+                ]
             },
             {
                 test: /\.less$/,
