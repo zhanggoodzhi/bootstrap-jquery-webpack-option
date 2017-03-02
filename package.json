@@ -7,7 +7,7 @@
     "pro": "npm run clean && webpack --config webpack.config.pro.js && gulp template",
     "server": "webpack-dev-server",
     "gulp": "gulp watch",
-    "clean": "rimraf ./dist"
+    "clean": "rimraf ./public/dist"
   },
   "repository": {
     "type": "git",
